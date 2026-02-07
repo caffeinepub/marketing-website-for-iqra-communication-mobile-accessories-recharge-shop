@@ -1,0 +1,20 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup for home and admin routes, wrapped with ThemeProvider and QueryClientProvider.",
+  "frontend/src/pages/HomePage.tsx": "Homepage layout component that composes all marketing sections (hero, services, products, gallery, contact) with header and footer.",
+  "frontend/src/pages/AdminPage.tsx": "Admin dashboard page with Internet Identity authentication gate, profile setup flow, admin authorization check, and inquiries table display.",
+  "frontend/src/components/SiteHeader.tsx": "Responsive site header with IQRA COMMUNICATION branding, logo, and smooth-scroll navigation to page sections.",
+  "frontend/src/components/HeroSection.tsx": "Hero section with gradient background, brand messaging, CTA buttons, and generated hero banner image.",
+  "frontend/src/components/ServicesSection.tsx": "Services showcase section displaying six service cards with icons and the generated services icons image.",
+  "frontend/src/components/ProductsSection.tsx": "Products/accessories section with categorized product listings in card format with badges.",
+  "frontend/src/components/GallerySection.tsx": "Gallery section displaying the three generated brand assets in a responsive grid.",
+  "frontend/src/components/ContactSection.tsx": "Contact section with click-to-call phone numbers, business info cards, and embedded inquiry form.",
+  "frontend/src/components/InquiryForm.tsx": "Customer inquiry form with validation, React Query mutation, and success/error toast notifications.",
+  "frontend/src/components/SiteFooter.tsx": "Site footer with brand info, quick links, contact details, and caffeine.ai attribution.",
+  "frontend/src/components/auth/LoginButton.tsx": "Reusable login/logout button using Internet Identity with loading states and query cache clearing on logout.",
+  "frontend/src/components/auth/ProfileSetupModal.tsx": "Modal for first-time user profile setup requiring name input after Internet Identity login.",
+  "frontend/src/components/admin/InquiriesTable.tsx": "Admin inquiries table component displaying customer inquiries with loading, empty, and error states.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations including user profiles and inquiry management.",
+  "frontend/src/hooks/useIsAdmin.ts": "React Query hook to check if the current authenticated user has admin permissions.",
+  "frontend/src/index.css": "Global styles with OKLCH color system using teal/green primary colors and red accents for both light and dark modes.",
+  "frontend/tailwind.config.js": "Tailwind configuration with teal/green theme colors, custom fonts (Inter, Poppins), and extended design tokens."
+}

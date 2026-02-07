@@ -1,0 +1,155 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-create-a-responsive-marketing-website-for-the-business-shown-in-the-uploaded-image-using-the-business-name-iqra-communication-and-positioning-it-as-a-mobile-accessories-mobile-recharge-service-shop",
+      "featureTitle": "Create a responsive marketing website for the business shown in the uploaded image, using the business name \"IQRA COMMUNICATION\" and positioning it as a mobile accessories + mobile recharge/service shop.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/SiteHeader.tsx",
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-homepage-layout-with-clear-sections-hero-shop-name-short-tagline-services-products-accessories-highlight-gallery-static-images-and-contact-phone-numbers-and-basic-info",
+      "featureTitle": "Add a homepage layout with clear sections: Hero (shop name + short tagline), Services, Products/Accessories highlight, Gallery (static images), and Contact (phone numbers and basic info).",
+      "files": [
+        "frontend/src/components/GallerySection.tsx",
+        "frontend/src/components/SiteHeader.tsx",
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-populate-the-contact-section-with-phone-numbers-visible-in-the-uploaded-image-9053030920-and-7027835322-formatting-allowed-numbers-must-match-add-click-to-call-links-tel",
+      "featureTitle": "Populate the Contact section with phone numbers visible in the uploaded image: \"9053030920\" and \"7027835322\" (formatting allowed, numbers must match). Add click-to-call links (tel:).",
+      "files": [
+        "frontend/src/components/ContactSection.tsx",
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-simple-inquiry-contact-form-name-phone-message-that-submits-to-the-backend-and-shows-success-error-states",
+      "featureTitle": "Add a simple \"Inquiry\" contact form (name, phone, message) that submits to the backend and shows success/error states.",
+      "files": [
+        "frontend/src/components/ContactSection.tsx",
+        "frontend/src/components/InquiryForm.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-provide-an-admin-page-in-the-frontend-that-requires-internet-identity-login-and-displays-the-stored-inquiries-in-a-table-newest-first",
+      "featureTitle": "Provide an admin page in the frontend that requires Internet Identity login and displays the stored inquiries in a table (newest first).",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/admin/InquiriesTable.tsx",
+        "frontend/src/components/auth/LoginButton.tsx",
+        "frontend/src/hooks/useIsAdmin.ts",
+        "frontend/src/pages/AdminPage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-6"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-apply-a-cohesive-visual-theme-appropriate-for-a-mobile-shop-brand-teal-green-base-with-red-accents-bold-typography-for-headings-and-clean-card-based-sections-avoid-blue-purple-as-primary-colors",
+      "featureTitle": "Apply a cohesive visual theme appropriate for a mobile shop brand: teal/green base with red accents, bold typography for headings, and clean card-based sections. Avoid blue/purple as primary colors.",
+      "files": [
+        "frontend/src/components/SiteHeader.tsx",
+        "frontend/src/index.css",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-7"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-generated-static-images-as-assets-in-frontend-public-assets-generated-and-use-them-in-the-hero-and-services-products-sections",
+      "featureTitle": "Add generated static images as assets in frontend/public/assets/generated and use them in the hero and services/products sections.",
+      "files": [
+        "frontend/src/components/HeroSection.tsx",
+        "frontend/src/components/ProductsSection.tsx",
+        "frontend/src/components/ServicesSection.tsx",
+        "frontend/src/components/SiteHeader.tsx",
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-8"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

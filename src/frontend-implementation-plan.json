@@ -1,0 +1,229 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "IQRA COMMUNICATION marketing website (mobile accessories & recharge/service)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Build a responsive English marketing site branded as “IQRA COMMUNICATION” for mobile accessories + recharge/service.",
+      "acceptanceCriteria": [
+        "Homepage renders without errors and is responsive on mobile and desktop.",
+        "Brand name \"IQRA COMMUNICATION\" is prominently displayed in the header/hero.",
+        "Copy is in English across the site."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the root app with a responsive marketing homepage view (English copy) and minimal path-based routing for the admin page (e.g., render admin view when path indicates admin)."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "create",
+          "description": "Implement the responsive homepage structure and English marketing copy for IQRA COMMUNICATION as a mobile accessories + recharge/service shop."
+        },
+        {
+          "path": "frontend/src/components/SiteHeader.tsx",
+          "operation": "create",
+          "description": "Add a responsive header with prominent “IQRA COMMUNICATION” branding and navigation links to homepage sections."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Add clear homepage sections (Hero, Services, Products/Accessories, Gallery, Contact) with in-page navigation.",
+      "acceptanceCriteria": [
+        "Homepage includes distinct sections for Hero, Services, Products/Accessories, Gallery, and Contact.",
+        "Navigation (top nav or in-page anchors) allows jumping to each section.",
+        "All sections have sensible placeholder English text if exact details are not available in the image."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Add distinct section blocks with stable anchor ids (#hero, #services, #products, #gallery, #contact) and sensible placeholder English text where details are unknown."
+        },
+        {
+          "path": "frontend/src/components/SiteHeader.tsx",
+          "operation": "modify",
+          "description": "Wire top navigation links to in-page anchors for Hero, Services, Products/Accessories, Gallery, and Contact."
+        },
+        {
+          "path": "frontend/src/components/GallerySection.tsx",
+          "operation": "create",
+          "description": "Create a static gallery section component (grid) that can display the generated brand assets and/or placeholder images."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Show phone numbers from the signboard with click-to-call links in the Contact section.",
+      "acceptanceCriteria": [
+        "Contact section displays both numbers exactly: 9053030920 and 7027835322.",
+        "Each number is clickable and uses a tel: link.",
+        "Numbers are visible on mobile without truncation."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ContactSection.tsx",
+          "operation": "create",
+          "description": "Implement the Contact section including click-to-call links for 9053030920 and 7027835322 (numbers must match exactly) and ensure mobile-safe wrapping (no truncation)."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Wire the new ContactSection into the homepage Contact section area and ensure it is reachable via the Contact nav anchor."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add an Inquiry form (name, phone, message) that calls the backend and shows success/error states.",
+      "acceptanceCriteria": [
+        "Form validates required fields and prevents empty submit.",
+        "On submit, data is stored via backend canister call and UI shows a success confirmation.",
+        "On backend failure, UI shows a readable error state without crashing."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/InquiryForm.tsx",
+          "operation": "create",
+          "description": "Create the Inquiry form UI with required-field validation and success/error UI states; submit via the backend actor createInquiry call using React Query mutation."
+        },
+        {
+          "path": "frontend/src/hooks/useCreateInquiry.ts",
+          "operation": "create",
+          "description": "Add a React Query mutation hook that uses useActor() to call createInquiry(name, phone, message) and returns mutation status for UI success/error handling."
+        },
+        {
+          "path": "frontend/src/components/ContactSection.tsx",
+          "operation": "modify",
+          "description": "Embed InquiryForm into the Contact section, keeping phone numbers visible and ensuring the form is usable on mobile."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Create an admin page gated by Internet Identity login and show inquiries in a React Query table (newest first) with loading/empty/error states.",
+      "acceptanceCriteria": [
+        "Admin page cannot be accessed without signing in via Internet Identity (redirect or gated UI).",
+        "Admin table shows at least: created time, name, phone, message.",
+        "Table loads via React Query and handles loading/empty/error states."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AdminPage.tsx",
+          "operation": "create",
+          "description": "Implement the admin page UI gated by Internet Identity login using the selected component “authorization” frontend guidance for auth gating; include a clear login CTA and a signed-in view. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/auth/LoginButton.tsx",
+          "operation": "create",
+          "description": "Add a reusable login/logout button that uses useInternetIdentity() and clears React Query cache on logout per the selected component “authorization” guidance. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/hooks/useIsAdmin.ts",
+          "operation": "create",
+          "description": "Create a React Query hook that calls actor.isCallerAdmin() (when authenticated) to gate admin content and present an access-denied state without crashing."
+        },
+        {
+          "path": "frontend/src/hooks/useListInquiries.ts",
+          "operation": "create",
+          "description": "Create a React Query hook that calls actor.listInquiries() and exposes loading/empty/error states for the admin inquiries table."
+        },
+        {
+          "path": "frontend/src/components/admin/InquiriesTable.tsx",
+          "operation": "create",
+          "description": "Implement a table view for inquiries (newest first in UI ordering) showing created time, name, phone, message; handle loading/empty/error states driven by React Query."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire AdminPage into the app’s navigation/routing so it is reachable (e.g., via /admin) and not an orphan view."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Apply a cohesive teal/green theme with red accents, bold headings, and clean card-based sections (avoid blue/purple primary colors).",
+      "acceptanceCriteria": [
+        "A consistent color palette and typography are used across header, buttons, sections, and cards.",
+        "Primary colors are not blue/purple; teal/green with red accents is visibly used.",
+        "Site has a polished, coherent look (spacing, alignment, consistent component styles)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Define global theme tokens/styles (Tailwind base + CSS variables) to set a teal/green primary and red accents, bold heading typography, and consistent spacing for card-based sections; ensure blue/purple are not primary."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Adjust Tailwind theme extensions (as needed) to support the teal/green + red palette and consistent card/section styling via existing theme variables."
+        },
+        {
+          "path": "frontend/src/components/SiteHeader.tsx",
+          "operation": "modify",
+          "description": "Apply cohesive branded styling (teal/green base with red accents; bold heading type) consistent with the global theme."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Style homepage sections as clean, consistent cards/blocks using the global theme (spacing, alignment, typography)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Add generated static images under frontend/public/assets/generated and use them in hero and services/products sections.",
+      "acceptanceCriteria": [
+        "Generated images exist under frontend/public/assets/generated.",
+        "Hero uses the generated banner image.",
+        "Services/Products section uses the generated icon set or illustrations."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/iqra-communication-logo.dim_512x512.png",
+          "operation": "create",
+          "description": "Add the generated logo asset at frontend/public/assets/generated/iqra-communication-logo.dim_512x512.png and use it in the site header/branding."
+        },
+        {
+          "path": "frontend/public/assets/generated/iqra-communication-hero.dim_1600x600.png",
+          "operation": "create",
+          "description": "Add the generated hero banner at frontend/public/assets/generated/iqra-communication-hero.dim_1600x600.png and use it in the homepage hero section."
+        },
+        {
+          "path": "frontend/public/assets/generated/iqra-services-icons.dim_1200x400.png",
+          "operation": "create",
+          "description": "Add the generated services icon set at frontend/public/assets/generated/iqra-services-icons.dim_1200x400.png and use it in Services and/or Products/Accessories highlight sections."
+        },
+        {
+          "path": "frontend/src/components/HeroSection.tsx",
+          "operation": "create",
+          "description": "Create a hero section component that renders the generated hero banner image (frontend/public/assets/generated/iqra-communication-hero.dim_1600x600.png) alongside the shop name and tagline."
+        },
+        {
+          "path": "frontend/src/components/ServicesSection.tsx",
+          "operation": "create",
+          "description": "Create a services section that uses the generated icons image (frontend/public/assets/generated/iqra-services-icons.dim_1200x400.png) and English service descriptions."
+        },
+        {
+          "path": "frontend/src/components/ProductsSection.tsx",
+          "operation": "create",
+          "description": "Create a products/accessories highlight section that incorporates the generated icons image (frontend/public/assets/generated/iqra-services-icons.dim_1200x400.png) and card-based highlights."
+        },
+        {
+          "path": "frontend/src/components/SiteHeader.tsx",
+          "operation": "modify",
+          "description": "Wire the generated logo image (frontend/public/assets/generated/iqra-communication-logo.dim_512x512.png) into the header branding."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Wire HeroSection, ServicesSection, and ProductsSection into the homepage in the required order and ensure they match the section anchors for navigation."
+        }
+      ]
+    }
+  ]
+}

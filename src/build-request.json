@@ -1,0 +1,170 @@
+{
+  "kind": "build_request",
+  "title": "Marketing website for IQRA Communication (mobile accessories & recharge shop)",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a responsive marketing website for the business shown in the uploaded image, using the business name \"IQRA COMMUNICATION\" and positioning it as a mobile accessories + mobile recharge/service shop.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "اس کے لئے ویب سائٹ بناو"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Homepage renders without errors and is responsive on mobile and desktop.",
+        "Brand name \"IQRA COMMUNICATION\" is prominently displayed in the header/hero.",
+        "Copy is in English across the site."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Add a homepage layout with clear sections: Hero (shop name + short tagline), Services, Products/Accessories highlight, Gallery (static images), and Contact (phone numbers and basic info).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "اس کے لئے ویب سائٹ بناو"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Homepage includes distinct sections for Hero, Services, Products/Accessories, Gallery, and Contact.",
+        "Navigation (top nav or in-page anchors) allows jumping to each section.",
+        "All sections have sensible placeholder English text if exact details are not available in the image."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Populate the Contact section with phone numbers visible in the uploaded image: \"9053030920\" and \"7027835322\" (formatting allowed, numbers must match). Add click-to-call links (tel:).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "اس کے لئے ویب سائٹ بناو"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Contact section displays both numbers exactly: 9053030920 and 7027835322.",
+        "Each number is clickable and uses a tel: link.",
+        "Numbers are visible on mobile without truncation."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add a simple \"Inquiry\" contact form (name, phone, message) that submits to the backend and shows success/error states.",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "اس کے لئے ویب سائٹ بناو"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Form validates required fields and prevents empty submit.",
+        "On submit, data is stored via backend canister call and UI shows a success confirmation.",
+        "On backend failure, UI shows a readable error state without crashing."
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Implement backend storage for inquiries in the single Motoko actor, including: createInquiry(name, phone, message) and an admin-only (authenticated) listInquiries() for viewing submissions.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "اس کے لئے ویب سائٹ بناو"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Inquiries are persisted in canister stable state (survive reload).",
+        "Unauthenticated users can create inquiries, but cannot list inquiries.",
+        "Authenticated admin can list inquiries (basic check using caller principal allowlist configured in code)."
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Provide an admin page in the frontend that requires Internet Identity login and displays the stored inquiries in a table (newest first).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "اس کے لئے ویب سائٹ بناو"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Admin page cannot be accessed without signing in via Internet Identity (redirect or gated UI).",
+        "Admin table shows at least: created time, name, phone, message.",
+        "Table loads via React Query and handles loading/empty/error states."
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "text": "Apply a cohesive visual theme appropriate for a mobile shop brand: teal/green base with red accents, bold typography for headings, and clean card-based sections. Avoid blue/purple as primary colors.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "اس کے لئے ویب سائٹ بناو"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A consistent color palette and typography are used across header, buttons, sections, and cards.",
+        "Primary colors are not blue/purple; teal/green with red accents is visibly used.",
+        "Site has a polished, coherent look (spacing, alignment, consistent component styles)."
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "text": "Add generated static images as assets in frontend/public/assets/generated and use them in the hero and services/products sections.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "اس کے لئے ویب سائٹ بناو"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Generated images exist under frontend/public/assets/generated.",
+        "Hero uses the generated banner image.",
+        "Services/Products section uses the generated icon set or illustrations."
+      ]
+    }
+  ],
+  "constraints": [
+    "Backend must remain a single Motoko actor (no additional backend services).",
+    "Do not edit files under frontend/src/components/ui or the immutable hook paths listed in SYSTEM_CONTEXT; compose them instead.",
+    "No third-party auth providers; only Internet Identity for admin access.",
+    "No external databases or cloud services."
+  ],
+  "nonGoals": [
+    "Full e-commerce checkout/cart/payment processing.",
+    "Real-time chat or WhatsApp API integration (tel: links are fine).",
+    "Inventory management, order management, or POS features."
+  ],
+  "imageRequirements": {
+    "required": [
+      "Clean vector-style logo reading \"IQRA COMMUNICATION\" (iqra-communication-logo.dim_512x512.png)",
+      "Wide hero banner illustration for a mobile accessories & repair/recharge shop (iqra-communication-hero.dim_1600x600.png)",
+      "Set of 6 simple flat icons: Recharge, Mobile Accessories, Screen Guard, Charger/Cable, Mobile Repair, Used Phones (iqra-services-icons.dim_1200x400.png)"
+    ],
+    "edits": []
+  }
+}

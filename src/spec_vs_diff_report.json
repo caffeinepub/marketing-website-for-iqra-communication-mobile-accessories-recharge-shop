@@ -1,0 +1,91 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-07T15:01:43.729Z",
+  "summary": "Diff adds a full frontend component set (hero/services/products/gallery/contact/inquiry form), an admin page with Internet Identity-based gating, and a Motoko backend actor with createInquiry/listInquiries plus additional access-control and user-profile features. However, key acceptance criteria around stable persistence and inquiry timestamps/created time are not evidenced in the backend types/state shown.",
+  "missing_requirements": [
+    {
+      "id": "REQ-5",
+      "requirement": "Inquiries are persisted in canister stable state (survive reload).",
+      "reason": "The backend stores inquiries in an in-memory Map and `nextInquiryId` var, but there is no evidence of `stable` variables or `preupgrade/postupgrade` logic to persist inquiries across upgrades/reloads.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "requirement": "Admin table shows at least: created time, name, phone, message.",
+      "reason": "Backend `Inquiry` type contains only `name`, `phone`, `message` (no timestamp). The admin table component comment explicitly states backend doesn't provide timestamps, indicating created time cannot be displayed as required.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/components/admin/InquiriesTable.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "User profile management (save/get user profiles) and a required profile setup flow before admin usage.",
+      "reason": "BuildRequest does not ask for user profiles or a profile-setup modal; it only requires an admin inquiries view behind Internet Identity.",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/components/auth/ProfileSetupModal.tsx",
+        "frontend/src/pages/AdminPage.tsx",
+        "frontend/src/hooks/useQueries.ts"
+      ]
+    },
+    {
+      "description": "Custom access-control initialization via a secret URL parameter (`caffeineAdminToken`) and authorization mixins/modules.",
+      "reason": "BuildRequest specifies a basic admin allowlist check in code using caller principal; it does not request secret-token bootstrapping via URL params or additional authorization modules.",
+      "evidence": [
+        "frontend/src/hooks/useActor.ts",
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Dark mode/theme switching infrastructure via `next-themes` ThemeProvider.",
+      "reason": "BuildRequest requests a cohesive teal/green theme with red accents, but does not request theme toggling or dark mode support.",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "frontend/src/index.css"
+      ]
+    },
+    {
+      "description": "Footer attribution link to caffeine.ai.",
+      "reason": "Not requested in the BuildRequest requirements/non-goals.",
+      "evidence": [
+        "frontend/src/components/SiteFooter.tsx"
+      ]
+    }
+  ],
+  "confidence": 0.78,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/ContactSection.tsx",
+    "frontend/src/components/GallerySection.tsx",
+    "frontend/src/components/HeroSection.tsx",
+    "frontend/src/components/InquiryForm.tsx",
+    "frontend/src/components/ProductsSection.tsx",
+    "frontend/src/components/ServicesSection.tsx",
+    "frontend/src/components/SiteFooter.tsx",
+    "frontend/src/components/SiteHeader.tsx",
+    "frontend/src/components/admin/InquiriesTable.tsx",
+    "frontend/src/components/auth/LoginButton.tsx",
+    "frontend/src/components/auth/ProfileSetupModal.tsx",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useIsAdmin.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/AdminPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/utils/urlParams.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}
